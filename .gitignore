@@ -1,0 +1,6 @@
+/api-gateway/node_modules
+/user-api/node_modules
+/cart-api/node_modules
+/orders-api/node_modules
+/payments-api/node_modules
+/products-api/node_modules
