@@ -6,9 +6,11 @@ const axios = require('axios');
 
 const app = express();
 
-const {setupRateLimit} = require("./utils/ratelimit");
+const {setupLogging} = require("./utils/logging");
 
-setupRateLimit(app);
+setupLogging(app);
+
+const port = process.env.PORT || 3004;
 
 app.use(bodyParser.json());
 
@@ -66,5 +68,4 @@ app.get('/orders/:id', auth, (req, res) => {
   res.json(o);
 });
 
-const port = process.env.PORT || 3004;
 app.listen(port, () => console.log(`Order Service listening ${port}`));

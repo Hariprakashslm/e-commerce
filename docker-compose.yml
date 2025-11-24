@@ -1,0 +1,44 @@
+ 
+services:
+  gateway:
+    build: ./api-gateway
+    ports: ["3000:3000"]
+    environment:
+      - JWT_SECRET=dev_secret
+      - USER_SERVICE=user
+      - PRODUCT_SERVICE=product
+      - CART_SERVICE=cart
+      - ORDER_SERVICE=order
+      - PAYMENT_SERVICE=payment
+      - PORT=3000
+    depends_on: ['user','product','cart','order','payment' ]
+
+  user:
+    build: ./user-service 
+    environment:
+      - JWT_SECRET=dev_secret
+      - PORT=3001
+
+  product:
+    build: ./product-service
+    environment: 
+      - PORT=3002
+
+  cart:
+    build: ./cart-service
+    environment:
+        - JWT_SECRET=dev_secret
+        - PORT=3003
+
+  order:
+    build: ./order-service
+    environment:
+        - JWT_SECRET=dev_secret
+        - PORT=3004
+  
+  payment:
+    build: ./payment-service
+    environment:
+        - PORT=3005
+
+ 

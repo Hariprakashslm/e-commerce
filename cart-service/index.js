@@ -3,12 +3,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const app = express();
-const {setupRateLimit} = require("./utils/ratelimit");
+const {setupLogging} = require("./utils/logging");
 
-setupRateLimit(app);
+setupLogging(app);
 
 app.use(bodyParser.json());
 
+
+const port = process.env.PORT || 3003;
 const SECRET = process.env.JWT_SECRET || 'dev_secret';
 const carts = {}; // userId -> { productId: qty }
 
@@ -46,6 +48,4 @@ app.delete('/cart/items/:productId', auth, (req, res) => {
   if (carts[userId]) delete carts[userId][pid];
   res.json(carts[userId] || {});
 });
-
-const port = process.env.PORT || 3003;
 app.listen(port, () => console.log(`Cart Service listening ${port}`));

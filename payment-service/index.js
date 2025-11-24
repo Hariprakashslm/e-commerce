@@ -4,9 +4,9 @@ const bodyParser = require('body-parser');
 const axios = require('axios');
 
 const app = express();
-const {setupRateLimit} = require("./utils/ratelimit");
-
-setupRateLimit(app);
+const {setupLogging} = require("./utils/logging");
+const port = process.env.PORT || 3005;
+setupLogging(app);
 
 app.use(bodyParser.json());
 
@@ -52,5 +52,5 @@ app.post('/payment-callback', (req, res) => {
 });
 
 
-const port = process.env.PORT || 3005;
+
 app.listen(port, () => console.log(`Payment Service listening ${port}`));

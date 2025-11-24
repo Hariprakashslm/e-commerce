@@ -3,10 +3,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
-const {setupRateLimit} = require("./utils/ratelimit");
+const {setupLogging} = require("./utils/logging");
 
-setupRateLimit(app);
+setupLogging(app);
 
+const port = process.env.PORT || 3002;
 app.use(bodyParser.json());
 
 let nextId = 1;
@@ -31,5 +32,4 @@ app.post('/products', (req, res) => {
   res.status(201).json(products[id]);
 });
 
-const port = process.env.PORT || 3002;
 app.listen(port, () => console.log(`Product Service listening ${port}`));

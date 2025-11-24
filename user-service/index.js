@@ -6,9 +6,9 @@ const bcrypt = require('bcryptjs');
 
 const app = express();
 
-const {setupRateLimit} = require("./utils/ratelimit");
+const {setupLogging} = require("./utils/logging");
 
-setupRateLimit(app);
+setupLogging(app);
 
 app.use(bodyParser.json());
 
