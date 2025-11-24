@@ -1,4 +1,3 @@
- 
 services:
   gateway:
     build: ./api-gateway
@@ -11,10 +10,10 @@ services:
       - ORDER_SERVICE=order
       - PAYMENT_SERVICE=payment
       - PORT=3000
-    depends_on: ['user','product','cart','order','payment' ]
+    depends_on: ["user", "product", "cart", "order", "payment"]
 
   user:
-    build: ./user-service  
+    build: ./user-service
     depends_on:
       - mysql_db
     environment:
@@ -28,25 +27,30 @@ services:
 
   product:
     build: ./product-service
-    environment: 
+    environment:
       - PORT=3002
+      - MONGO_INITDB_HOST=mongo
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_PORT=27017
+    depends_on: ["mongo"]
 
   cart:
     build: ./cart-service
     environment:
-        - JWT_SECRET=dev_secret
-        - PORT=3003
+      - JWT_SECRET=dev_secret
+      - PORT=3003
 
   order:
     build: ./order-service
     environment:
-        - JWT_SECRET=dev_secret
-        - PORT=3004
-  
+      - JWT_SECRET=dev_secret
+      - PORT=3004
+
   payment:
     build: ./payment-service
     environment:
-        - PORT=3005
+      - PORT=3005
 
   mysql_db:
     image: mysql:8
@@ -58,6 +62,19 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
- 
+
+  mongo:
+    image: mongo:6
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongo_data:/data/db
+
 volumes:
   mysql_data:
+  mongo_data:

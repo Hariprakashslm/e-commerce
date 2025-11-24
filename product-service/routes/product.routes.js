@@ -1,15 +1,27 @@
 const router = require("express").Router();
-const validate = require("../middlewares/validate");
 
 const productController = require("../controllers/product.controller");
+const validateMiddleware = require("../middleware/validate.middleware");
+
 const productValidation = require("../validations/product.validation");
 
+const aliveFrom = new Date();
 
-app.get('/', (req, res) => res.send('Product Service OK'));
+router.get("/health", (req, res) =>
+  res.send(`Product Service alive from : ${aliveFrom}`)
+);
 
 // Admin
-router.post("/", validate(productValidation.createProduct), productController.createProduct);
-router.put("/:id", validate(productValidation.updateProduct), productController.updateProduct);
+router.post(
+  "/",
+  validateMiddleware(productValidation.createProduct),
+  productController.createProduct
+);
+router.put(
+  "/:id",
+  validateMiddleware(productValidation.updateProduct),
+  productController.updateProduct
+);
 router.delete("/:id", productController.deleteProduct);
 router.patch("/:id/stock", productController.updateProduct);
 

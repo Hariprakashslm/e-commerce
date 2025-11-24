@@ -12,7 +12,7 @@ const { authMiddleware } = require("../utils/authMiddleware");
 
 const validate = require("../utils/validate");
 
-router.get("/", (_, res) => res.send("User Service OK"));
+router.get("/health", (_, res) => res.send("User Service OK"));
 
 router.post("/register", validate(userSignupSchema), registerHandler);
 
