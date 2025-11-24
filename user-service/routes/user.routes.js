@@ -1,22 +1,23 @@
-const router = require('express').Router();
+const router = require("express").Router();
 const {
   registerHandler,
   loginHandler,
   getProfileHandler,
-} = require('../controller/user.controller'); 
+} = require("../controller/user.controller");
 const {
   userSignupSchema,
   userLoginSchema,
-} = require('../validations/user.validation');
-const { authMiddleware } = require('../utils/authMiddleware');
-const validate = require('../utils/validate');
+} = require("../validations/user.validation");
+const { authMiddleware } = require("../utils/authMiddleware");
 
-router.get('/', (_, res) => res.send('User Service OK'));
+const validate = require("../utils/validate");
 
-router.post('/register', validate(userSignupSchema), registerHandler);
+router.get("/", (_, res) => res.send("User Service OK"));
 
-router.post('/login', validate(userLoginSchema), loginHandler);
+router.post("/register", validate(userSignupSchema), registerHandler);
 
-router.get('/profile', authMiddleware, getProfileHandler);
+router.post("/login", validate(userLoginSchema), loginHandler);
+
+router.get("/profile", authMiddleware, getProfileHandler);
 
 module.exports = router;
