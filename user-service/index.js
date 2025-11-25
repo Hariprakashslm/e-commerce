@@ -2,10 +2,11 @@ const express = require('express');
 
 const app = express();
 
-const { setupLogging } = require('./utils/logging');
-
-const { setupBodyParser } = require('./utils/bodyParser');
+ 
+ 
 const { sequelizeSync } = require('./utils/sequelizeSync'); 
+const { setupLogging } = require('../api-gateway/utils/logging');
+const { setupBodyParser } = require('../product-service/middleware/bodyParser.middleware');
 
 setupLogging(app);
 setupBodyParser(app);

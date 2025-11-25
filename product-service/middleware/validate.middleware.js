@@ -1,4 +1,5 @@
 module.exports = (schema) => (req, res, next) => {
+  console.log("validate middleware")
   const { error } = schema.validate(req.body, { abortEarly: false });
 
   if (error) {

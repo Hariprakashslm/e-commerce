@@ -7,10 +7,10 @@ const {
 const {
   userSignupSchema,
   userLoginSchema,
-} = require("../validations/user.validation");
-const { authMiddleware } = require("../utils/authMiddleware");
+} = require("../validations/user.validation"); 
+const {authMiddleware} = require('../middleware/auth.middleware')
 
-const validate = require("../utils/validate");
+const validate = require("../middleware/validate.middleware");
 
 router.get("/health", (_, res) => res.send("User Service OK"));
 
