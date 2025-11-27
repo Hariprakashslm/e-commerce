@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-
+const constants = require("../utils/constants")
 const mongoDBConnect = () => {
   mongoose
-    .connect(process.env.MONGO_DB_CONNECTION_URL)
+    .connect(constants.MONGO_DB_CONNECTION_URL)
     .then(() => console.log('MongoDB Successfully Connected!'))
     .catch((err) => {
       console.error(' DB Error:', err);

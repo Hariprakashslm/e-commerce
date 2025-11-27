@@ -3,6 +3,7 @@ const express = require("express");
 const { setupLogging } = require("./middleware/logging.middleware");
 const { mongoDBConnect } = require("./config/db");
 const { setupBodyParser } = require("./middleware/bodyParser.middleware");
+const constants = require("./utils/constants")
 const app = express();
 
 mongoDBConnect();
@@ -10,7 +11,7 @@ mongoDBConnect();
 setupLogging(app);
 setupBodyParser(app);
 
-const port = process.env.PORT;
+const port = constants.PORT;
  
 
 app.use("/", require("./routes/product.routes"));

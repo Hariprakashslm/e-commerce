@@ -1,8 +1,8 @@
 const { getUserByEmail ,createUser} = require('../services/user.service');
-
+const constants = require('../utils/constants')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_SECRET = constants.JWT_SECRET;
 
 const getProfileHandler = async (req, res) => {
   const userEmail = req.user.email;
