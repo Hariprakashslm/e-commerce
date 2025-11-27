@@ -4,3 +4,6 @@
 /order-service/node_modules
 /payment-service/node_modules
 /product-service/node_modules
+
+/user-service/.env
+/product-service/.env

@@ -10,7 +10,7 @@ mongoDBConnect();
 setupLogging(app);
 setupBodyParser(app);
 
-const port = process.env.PORT || 3002;
+const port = process.env.PORT;
  
 
 app.use("/", require("./routes/product.routes"));
