@@ -4,14 +4,16 @@ const app = express();
 
  
  
-const { sequelizeSync } = require('./utils/sequelizeSync'); 
+ 
 const { setupLogging } = require('../api-gateway/utils/logging');
-const { setupBodyParser } = require('../product-service/middleware/bodyParser.middleware');
+const { setupBodyParser } = require('./middleware/bodyParser.middleware');
+const { mongoDBConnect } = require('./config/db');
 
 setupLogging(app);
 setupBodyParser(app);
-sequelizeSync();
  
+mongoDBConnect() 
+
 app.use("/", require("./routes/user.routes"));
 const port = process.env.PORT || 3001;
 

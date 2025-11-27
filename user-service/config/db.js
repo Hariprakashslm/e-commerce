@@ -1,15 +1,19 @@
-const { Sequelize } = require('sequelize');
+const mongoose = require('mongoose');
 
-const sequelize = new Sequelize(
-  process.env.MYSQL_DB || 'user_db',
-  process.env.MYSQL_USER || 'root',
-  process.env.MYSQL_PASSWORD || 'password',
-  {
-    host: process.env.MYSQL_HOST || 'localhost',
-    port: process.env.MYSQL_PORT || 3306,
-    dialect: 'mysql',
-    logging: false,
-  }
-);
+const mongoDBConnect = () => {
+  mongoose
+    .connect(
+      process.env.MONGO_INITDB_ROOT_USERNAME &&
+        process.env.MONGO_INITDB_ROOT_PASSWORD &&
+        process.env.MONGODB_HOST
+        ? `mongodb://${process.env.MONGO_INITDB_ROOT_USERNAME}:${process.env.MONGO_INITDB_ROOT_PASSWORD}@${process.env.MONGO_INITDB_HOST}:${process.env.MONGO_INITDB_PORT}/?authSource=admin`
+        : `mongodb://root:password@localhost:27018/?authSource=admin`
+    )
+    .then(() => console.log('MongoDB Successfully Connected!'))
+    .catch((err) => {
+      console.error(' DB Error:', err);
+      process.exit(1);
+    });
+};
 
-module.exports = sequelize;
+exports.mongoDBConnect = mongoDBConnect;

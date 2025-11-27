@@ -1,5 +1,5 @@
-const User = require("../models/user.model");
+const User = require('../models/user.model');
 
-exports.getUserByEmail = (email) => User.findOne({ where: { email } });
+exports.getUserByEmail = (email) => User.findOne({ email });
 
-exports.createUser = (data) => User.createUser(data);
+exports.createUser = (data) => User.create(data);
