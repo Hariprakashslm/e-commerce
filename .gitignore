@@ -5,5 +5,6 @@
 /payment-service/node_modules
 /product-service/node_modules
 
+/api-gateway/.env
 /user-service/.env
 /product-service/.env
