@@ -7,6 +7,11 @@ module.exports = {
     timeout: 5000,
     retries: 2,
     healthCheck: "/health",
+    circuitBreaker: {
+      timeout: 6000,
+      errorThresholdPercentage: 50,
+      resetTimeout: 10000,
+    },
   },
 
   orderService: {
@@ -15,6 +20,11 @@ module.exports = {
     timeout: 5000,
     retries: 2,
     healthCheck: "/health",
+    circuitBreaker: {
+      timeout: 6000,
+      errorThresholdPercentage: 50,
+      resetTimeout: 10000,
+    },
   },
 
   paymentService: {
@@ -23,6 +33,11 @@ module.exports = {
     timeout: 5000,
     retries: 2,
     healthCheck: "/health",
+    circuitBreaker: {
+      timeout: 6000,
+      errorThresholdPercentage: 50,
+      resetTimeout: 10000,
+    },
   },
 
   productService: {
@@ -31,6 +46,11 @@ module.exports = {
     timeout: 5000,
     retries: 2,
     healthCheck: "/health",
+    circuitBreaker: {
+      timeout: 6000,
+      errorThresholdPercentage: 50,
+      resetTimeout: 10000,
+    },
   },
 
   userService: {
@@ -39,5 +59,10 @@ module.exports = {
     timeout: 5000,
     retries: 2,
     healthCheck: "/health",
+    circuitBreaker: {
+      timeout: 6000,
+      errorThresholdPercentage: 50,
+      resetTimeout: 10000,
+    },
   },
 };

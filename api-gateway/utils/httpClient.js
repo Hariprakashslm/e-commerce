@@ -11,7 +11,8 @@ const createHttpClient = (service) => {
     retries: service.retries,
     retryDelay: axiosRetry.exponentialDelay,
     retryCondition: (error) =>
-      error.code === "ECONNABORTED" || error.response?.status >= 500,
+      error.code === "ECONNABORTED" ||
+      (error.response && error.response.status >= 500),
   });
 
   return client;
