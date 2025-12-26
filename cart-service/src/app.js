@@ -4,17 +4,14 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const cartRoutes = require("./routes/cart.routes");
-const correlationMiddleware = require("./middlewares/correlation.middleware");
-
+const { middlewares } = require("@hslm/shared");
 const app = express();
 
-app.use(correlationMiddleware);
+app.use(middlewares.correlation);
 
-app.use(require("./middlewares/logging.middleware"));
+app.use(middlewares.logging);
 
 app.use(bodyParser.json());
-
-app.use(require("./middlewares/logging.middleware"));
 
 app.get("/health", async (_, res) => {
   const dbState = mongoose.connection.readyState === 1;
@@ -26,6 +23,6 @@ app.get("/health", async (_, res) => {
 
 app.use("/cart", cartRoutes);
 
-app.use(require("./middlewares/error.middleware"));
+app.use(middlewares.errorHandler("Cart service error"));
 
 module.exports = app;

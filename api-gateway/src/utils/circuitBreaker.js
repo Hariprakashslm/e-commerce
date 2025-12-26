@@ -1,5 +1,6 @@
 const CircuitBreaker = require("opossum");
-const logger = require("./logger");
+
+const { logger } = require("@hslm/shared");
 
 const createBreaker = (fn, options, serviceName) => {
   const breaker = new CircuitBreaker(fn, options);

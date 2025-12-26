@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@hslm/shared": "github:Hariprakashslm/shared-lib",
     "axios-retry": "^4.5.0",
     "crypto": "^1.0.1",
     "dotenv": "^17.2.3",

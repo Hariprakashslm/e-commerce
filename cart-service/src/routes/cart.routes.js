@@ -3,9 +3,8 @@ const router = express.Router();
 
 const cartController = require("../controllers/cart.controller");
 const authMiddleware = require("../middlewares/auth.middleware");
-const validationMiddleware = require("../middlewares/validation.middleware");
 const { addItemSchema } = require("../validations/cart.validation");
-
+const { middlewares } = require("@hslm/shared");
 /**
  * All cart routes are protected
  * Gateway passes JWT → service validates it
@@ -18,7 +17,7 @@ router.get("/", authMiddleware, cartController.getCart);
 router.post(
   "/items",
   authMiddleware,
-  validationMiddleware(addItemSchema),
+  middlewares.validate(addItemSchema),
   cartController.addItem
 );
 

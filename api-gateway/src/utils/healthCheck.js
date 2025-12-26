@@ -1,6 +1,5 @@
 const axios = require("axios");
-const logger = require("./logger");
-
+const { logger } = require("@hslm/shared");
 const checkHealth = async (service) => {
   try {
     const res = await axios.get(`${service.baseUrl}${service.healthCheck}`, {

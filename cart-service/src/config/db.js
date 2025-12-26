@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
 const { mongoUri } = require("./env");
+const { connectMongo } = require("@hslm/shared").db;
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(mongoUri);
+    await connectMongo(mongoUri);
     console.log("MongoDB connected");
   } catch (err) {
     console.error("MongoDB connection failed", err);

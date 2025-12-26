@@ -1,4 +1,5 @@
-module.exports = (req, res, next) => {
-  // JWT validation / OAuth
-  next();
-};
+const { env } = require("../config");
+
+const { auth } = require("@hslm/shared").middlewares;
+
+module.exports = auth(env.jwtSecret);
