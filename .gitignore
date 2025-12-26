@@ -7,5 +7,6 @@
 
 /api-gateway/.env
 /cart-service/.env
+/order-service/.env
 /user-service/.env
 /product-service/.env
